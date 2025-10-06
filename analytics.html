@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Analytics - Maison Elegance Fashion Boutique</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/analytics.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">
+                <img src="img/usf-logo-png-2.png" alt="Maison Elegance Fashion Boutique logo" />
+                <span>Analytics Dashboard</span>
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="developer.html">Developer</a></li>
+                    <li><a href="admin.html">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="analytics-main">
+        <div class="container">
+            <div class="analytics-header">
+                <h1>Business Analytics Dashboard</h1>
+                <p class="analytics-subtitle">Real-time insights and performance metrics</p>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-content">
+                        <div class="metric-icon">$</div>
+                        <div class="metric-info">
+                            <h3>Total Revenue</h3>
+                            <div class="metric-value" id="totalRevenue">$12,450</div>
+                            <div class="metric-change positive" id="revenueChange">+8.5%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-content">
+                        <div class="metric-icon">CART</div>
+                        <div class="metric-info">
+                            <h3>Total Orders</h3>
+                            <div class="metric-value" id="totalOrders">186</div>
+                            <div class="metric-change positive" id="ordersChange">+12.3%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-content">
+                        <div class="metric-icon">USERS</div>
+                        <div class="metric-info">
+                            <h3>Active Customers</h3>
+                            <div class="metric-value" id="activeCustomers">1,247</div>
+                            <div class="metric-change positive" id="customersChange">+5.7%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-content">
+                        <div class="metric-icon">ORDERS</div>
+                        <div class="metric-info">
+                            <h3>Products Sold</h3>
+                            <div class="metric-value" id="productsSold">892</div>
+                            <div class="metric-change positive" id="productsSoldChange">+15.2%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="charts-section">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h2>Real-Time Sales Tracker</h2>
+                        <div class="chart-controls">
+                            <button id="toggleRealtime" class="btn primary">Start Live Updates</button>
+                            <select id="timeRange">
+                                <option value="24h">Last 24 Hours</option>
+                                <option value="7d">Last 7 Days</option>
+                                <option value="30d">Last 30 Days</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="realtimeChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h2>Sales Funnel Analysis</h2>
+                        <div class="chart-info">
+                            <span class="info-tooltip" title="Shows conversion rates from visitors to customers">ℹ️</span>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="funnelChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Main Analytics Charts -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h2>Revenue & Orders Trend</h2>
+                        <div class="chart-controls">
+                            <select id="dateRange">
+                                <option value="7">Last 7 Days</option>
+                                <option value="30" selected>Last 30 Days</option>
+                                <option value="90">Last 90 Days</option>
+                            </select>
+                            <button id="refreshData" class="btn secondary">Refresh</button>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h2>Top Products Performance</h2>
+                        <div class="chart-controls">
+                            <button class="chart-toggle active" data-chart="products" data-type="doughnut">Doughnut</button>
+                            <button class="chart-toggle" data-chart="products" data-type="bar">Bar</button>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="productsChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h2>Sales by Category</h2>
+                        <div class="chart-controls">
+                            <button class="chart-toggle active" data-chart="categories" data-type="pie">Pie</button>
+                            <button class="chart-toggle" data-chart="categories" data-type="bar">Bar</button>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="categoriesChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-container full-width">
+                    <div class="chart-header">
+                        <h2>Customer Activity Heatmap</h2>
+                        <p class="chart-description">Shows customer activity patterns by day and hour</p>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="heatmapChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-container full-width">
+                    <div class="chart-header">
+                        <h2>Monthly Performance Comparison</h2>
+                        <div class="chart-controls">
+                            <button class="chart-toggle active" data-chart="monthly" data-type="line">Line</button>
+                            <button class="chart-toggle" data-chart="monthly" data-type="bar">Bar</button>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="monthlyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Data Tables Section -->
+            <div class="tables-section">
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>Top Performing Products</h2>
+                        <p class="table-description">Products ranked by revenue and growth</p>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="analytics-table">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Sales</th>
+                                    <th>Revenue</th>
+                                    <th>Growth</th>
+                                    <th>Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody id="topProductsBody">
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>Customer Insights</h2>
+                        <p class="table-description">Key customer metrics and trends</p>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="analytics-table">
+                            <thead>
+                                <tr>
+                                    <th>Metric</th>
+                                    <th>Current Value</th>
+                                    <th>Previous Period</th>
+                                    <th>Change</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customerInsightsBody">
+                                <!-- Data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="insights-section">
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <h3>Key Insights</h3>
+                        <ul class="insights-list">
+                            <li>Revenue growth accelerated by 8.5% this month</li>
+                            <li>Conversion rate improved to 3.2% (+0.8%)</li>
+                            <li>Dresses category leading with 42% of sales</li>
+                            <li>Mobile traffic accounts for 68% of visits</li>
+                        </ul>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Recommendations</h3>
+                        <ul class="insights-list">
+                            <li>Increase inventory for top-performing dress styles</li>
+                            <li>Optimize mobile checkout experience</li>
+                            <li>Launch email campaign for returning customers</li>
+                            <li>A/B test new product page layouts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="export-section">
+                <div class="export-header">
+                    <h2>Export Analytics</h2>
+                    <p>Download comprehensive reports in your preferred format</p>
+                </div>
+                <div class="export-buttons">
+                    <button id="exportPDF" class="btn secondary">Export as PDF</button>
+                    <button id="exportCSV" class="btn secondary">Export as CSV</button>
+                    <button id="exportJSON" class="btn secondary">Export as JSON</button>
+                    <button id="printReport" class="btn secondary">Print Report</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p><span id="year"></span> Maison Elegance Fashion Boutique Vladimir Medoev Assignment 1 All rights reserved.</p>
+            <p class="footer-cv">
+                <a href="documents/CV Medoev 2025.pdf" class="footer-cv-link" target="_blank" download>
+                    Download Developer's CV
+                </a>
+            </p>
+            <nav class="footer-nav">
+                <a href="#privacy">Privacy</a>
+                <a href="#terms">Terms</a>
+            </nav>
+        </div>
+    </footer>
+    <script src="js/analytics.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+# Fashion Boutique Website - Apache Configuration
+# Set default file
+DirectoryIndex index.html
+# MIME Types for better compatibility
+AddType image/svg+xml .svg
+AddType application/javascript .js
+AddType text/css .css
+AddType application/pdf .pdf
+# Enable compression for better performance
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+    # Note: PDF compression usually not recommended as PDFs are already compressed
+</IfModule>
+# Enhanced security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options SAMEORIGIN
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    # Remove server information for security
+    Header always unset X-Powered-By
+    Header unset Server
+</IfModule>
+# Custom error pages (optional)
+ErrorDocument 404 /index.html
+ErrorDocument 403 /index.html
+ErrorDocument 500 /index.html
+# Cache control for static assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    # Images - longer cache for static assets
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    # Stylesheets and Scripts - moderate cache
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType text/javascript "access plus 1 week"
+    # Documents
+    ExpiresByType application/pdf "access plus 1 month"
+    # HTML - shorter cache for dynamic content
+    ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+# Browser compatibility and performance
+<IfModule mod_setenvif.c>
+    # Don't compress images and other binary files
+    SetEnvIfNoCase Request_URI \
+        \.(?:gif|jpe?g|png|rar|zip|exe|flv|mov|wma|mp3|avi|swf|mp?g|mp4|webm|webp)$ no-gzip dont-vary
+</IfModule>
+# File access restrictions for security
+<Files ~ "^\.(htaccess|htpasswd|ini|log|sh|inc|bak)$">
+    Require all denied
+</Files>
+# Prevent access to backup and temporary files
+<FilesMatch "\.(bak|config|sql|fla|psd|ini|log|sh|inc|swp|dist)$">
+    Require all denied
+</FilesMatch>

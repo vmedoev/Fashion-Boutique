@@ -1,0 +1,189 @@
+<!-- Fashion Boutique Website - Main Page
+- Author: Vladimir Medoev
+- Date: October 2024  
+- Assignment: Assignment 1 - Fashion Boutique Website -->
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Maison Elegance Fashion Boutique — Timeless Fashion</title>
+	<link rel="stylesheet" href="css/main.css" />
+	<meta name="description" content="Maison Elegance Fashion Boutique — curated women's fashion, seasonal collections and accessories." />
+</head>
+<body>
+	<header class="site-header">
+		<div class="site-title">Maison Elegance Fashion Boutique</div>
+		<div class="site-subtitle">Home to Timeless Elegance</div>
+		<div class="datetime-display" id="currentDateTime"></div>
+		<div class="container header-inner">
+			<a class="brand" href="#">
+				<img src="img/usf-logo-png-2.png" alt="Maison Elegance Fashion Boutique logo" />
+				<span>Maison Elegance Fashion Boutique</span>
+			</a>
+			<button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="siteNav">
+				<span class="sr-only">Toggle navigation</span>
+				Menu
+			</button>
+			<nav id="siteNav" class="nav">
+				<ul>
+					<li><a href="#collections">Collections</a></li>
+					<li><a href="#featured">Featured</a></li>
+					<li><a href="aboutus.html">About</a></li>
+					<li><a href="developer.html">Developer</a></li>
+					<li><a href="#contact">Contact</a></li>
+					<li><a href="admin.html">Admin</a></li>
+					<li><a href="analytics.html">Analytics</a></li>
+				</ul>
+			</nav>
+			<div class="header-actions">
+				<button id="cartButton" class="cart-btn" aria-label="Open cart">Cart <span id="cartCount" class="cart-count">0</span></button>
+			</div>
+		</div>
+		<div class="header-bottom">
+			<div class="brand-caption">
+				<div>Vladimir Medoev Assignment 1 Global MS AIBA</div>
+				<div><a href="documents/CV Medoev 2025.pdf" class="cv-download-link" target="_blank" download>
+					(Click here to download the Developer's CV)
+				</a></div>
+			</div>
+		</div>
+	</header>
+
+	<main>
+		<section class="hero">
+			<div class="container hero-inner">
+				<div class="hero-copy">
+					<h1>Timeless Pieces. Thoughtful Design.</h1>
+					<p>Discover our curated collection of dresses, outerwear, and accessories crafted for everyday elegance.</p>
+					<a class="btn primary" href="#featured">Shop Featured Items</a>
+				</div>
+				<div class="hero-image" aria-hidden="true">
+					<img src="img/132866-retro-fashion-model.svg" alt="Model wearing boutique clothing" />
+				</div>
+			</div>
+		</section>
+
+		<section id="featured" class="section">
+			<div class="container">
+				<h2>Featured</h2>
+				<p class="lead">Hand-picked pieces for the season</p>
+				<div class="products-grid">
+					<article class="product-card">
+						<img src="img/132866-retro-fashion-model.svg" alt="Silk midi dress" />
+						<div class="card-body">
+							<h3>Silk Midi Dress</h3>
+							<p class="price">$129</p>
+							<p class="desc">Soft, bias-cut silk in a flattering midi silhouette.</p>
+							<div class="card-actions">
+								<button class="btn add-to-cart" data-name="Silk Midi Dress" data-price="129">Add to cart</button>
+							</div>
+						</div>
+					</article>
+					<article class="product-card">
+						<img src="img/132855-autumn-girl.svg" alt="Tailored blazer" />
+						<div class="card-body">
+							<h3>Tailored Blazer</h3>
+							<p class="price">$169</p>
+							<p class="desc">Structured yet comfortable—perfect for work or evenings out.</p>
+							<div class="card-actions">
+								<button class="btn add-to-cart" data-name="Tailored Blazer" data-price="169">Add to cart</button>
+							</div>
+						</div>
+					</article>
+					<article class="product-card">
+						<img src="img/132853-arty-girl-in-gown.svg" alt="Leather crossbody bag" />
+						<div class="card-body">
+							<h3>Leather Crossbody</h3>
+							<p class="price">$89</p>
+							<p class="desc">Compact, hands-free carry in premium leather.</p>
+							<div class="card-actions">
+								<button class="btn add-to-cart" data-name="Leather Crossbody" data-price="89">Add to cart</button>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section id="collections" class="section alt">
+			<div class="container">
+				<h2>Our Collections</h2>
+				<div class="collections">
+					<div class="collection">
+						<img src="img/132855-autumn-girl.svg" alt="Evening collection" />
+						<h4>Evening</h4>
+					</div>
+					<div class="collection">
+						<img src="img/132853-arty-girl-in-gown.svg" alt="Casual collection" />
+						<h4>Casual</h4>
+					</div>
+					<div class="collection">
+						<img src="img/132866-retro-fashion-model.svg" alt="Accessories" />
+						<h4>Accessories</h4>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="about" class="section">
+			<div class="container about-inner">
+				<div>
+					<h2>About Maison Elegance</h2>
+					<p>Rooted in a passion for craftsmanship and timeless style, Maison Elegance Fashion Boutique offers a thoughtfully curated seasonal collection — designed to be mixed, matched, and worn for years to come.</p>
+					<p class="muted">We use sustainably sourced fabrics, produce in limited runs, and package with care.</p>
+				</div>
+				<div class="about-image">
+					<img src="img/132855-autumn-girl.svg" alt="Studio workspace" />
+				</div>
+			</div>
+		</section>
+
+		<section id="contact" class="section alt">
+			<div class="container">
+				<h2>Contact</h2>
+				<p>Questions about fit, materials or wholesale? Send us a message.</p>
+				<form id="contactForm" class="contact-form" action="#" method="post">
+					<label for="name">Name</label>
+					<input id="name" name="name" required />
+					<label for="email">Email</label>
+					<input id="email" type="email" name="email" required />
+					<label for="message">Message</label>
+					<textarea id="message" name="message" rows="5" required></textarea>
+					<button class="btn" type="submit">Send message</button>
+				</form>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container footer-inner">
+			<p><span id="year"></span> Maison Elegance Fashion Boutique Vladimir Medoev Assignment 1 All rights reserved.</p>
+			<p class="footer-cv">
+				<a href="documents/CV Medoev 2025.pdf" class="footer-cv-link" target="_blank" download>
+					Download Developer's CV
+				</a>
+			</p>
+			<nav class="footer-nav">
+				<a href="#privacy">Privacy</a>
+				<a href="#terms">Terms</a>
+			</nav>
+		</div>
+	</footer>
+
+	<!-- Cart modal (hidden) -->
+	<div id="cartModal" class="cart-modal" aria-hidden="true">
+		<div class="cart-panel">
+			<button id="closeCart" class="close-cart" aria-label="Close cart">✕</button>
+			<h3>Your Cart</h3>
+			<ul id="cartItems" class="cart-items"></ul>
+			<div class="cart-summary">
+				<strong>Total: $<span id="cartTotal">0</span></strong>
+				<button class="btn primary">Checkout</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/main.js"></script>
+</body>
+</html>
